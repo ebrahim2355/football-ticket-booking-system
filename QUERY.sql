@@ -109,3 +109,20 @@ WHERE full_name ILIKE 'Tanvir%'
 SELECT booking_id, user_id, match_id, COALESCE(payment_status, 'Action Required') AS systematic_status
 FROM Bookings
 WHERE payment_status IS NULL;
+
+-- =========================================================================
+-- QUERY 4: BOOKING DETAILS WITH USER NAME AND MATCH FIXTURE
+-- =========================================================================
+SELECT b.booking_id, u.full_name, m.fixture, b.total_cost
+FROM Bookings b
+INNER JOIN Users u ON b.user_id = u.user_id
+INNER JOIN Matches m ON b.match_id = m.match_id
+ORDER BY b.booking_id;
+
+-- =========================================================================
+-- QUERY 5: ALL USERS WITH THEIR BOOKING IDS, INCLUDING USERS WITH NO BOOKING
+-- =========================================================================
+SELECT u.user_id, u.full_name, b.booking_id
+FROM Users u
+LEFT JOIN Bookings b ON u.user_id = b.user_id
+ORDER BY u.user_id, b.booking_id;
