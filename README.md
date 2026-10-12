@@ -10,6 +10,8 @@ The database is made with PostgreSQL.
 
 The diagram file is also in this repository as `ERD.drawio`.
 
+![ERD of the Football Ticket Booking System](./ERD.png)
+
 Relationships in the ERD:
 
 - **One to Many:** one user can make many bookings (`Users` to `Bookings`).
