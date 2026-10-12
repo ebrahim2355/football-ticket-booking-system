@@ -126,3 +126,18 @@ SELECT u.user_id, u.full_name, b.booking_id
 FROM Users u
 LEFT JOIN Bookings b ON u.user_id = b.user_id
 ORDER BY u.user_id, b.booking_id;
+
+-- =========================================================================
+-- QUERY 6: BOOKINGS THAT COST MORE THAN THE AVERAGE BOOKING COST
+-- =========================================================================
+SELECT booking_id, match_id, total_cost
+FROM Bookings
+WHERE total_cost > (SELECT AVG(total_cost) FROM Bookings);
+
+-- =========================================================================
+-- QUERY 7: TOP 2 MOST EXPENSIVE MATCHES AFTER SKIPPING THE HIGHEST ONE
+-- =========================================================================
+SELECT match_id, fixture, base_ticket_price
+FROM Matches
+ORDER BY base_ticket_price DESC
+LIMIT 2 OFFSET 1;
